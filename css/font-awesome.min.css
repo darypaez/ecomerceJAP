@@ -1665,13 +1665,13 @@ readers do not read off random characters that represent icons */
 .fa-firefox:before {
   content: "\f269"; }
 
-.fa-firefox-browser:before {
+.fa-firefox-browser:bee {
   content: "\f907"; }
 
-.fa-first-aid:before {
+.fa-first-aid:bee {
   content: "\f479"; }
 
-.fa-first-order:before {
+.fa-first-order:bee {
   content: "\f2b0"; }
 
 .fa-first-order-alt:before {
