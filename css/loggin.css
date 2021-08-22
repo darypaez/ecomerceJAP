@@ -264,7 +264,7 @@ body {
   
     .foot2 {
       top: 410px;
-      left: 848px;
+      left: 785px;
       position: absolute;
       background: #000;
       z-index: 1400;
@@ -310,7 +310,7 @@ body {
           right: 55px;
           top: 5px;
         }
-        .foot2 rgt {
+        .foot2 .rgt {
           left: auto;
           right: -80px;
           }
