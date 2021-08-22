@@ -362,7 +362,7 @@ h1 {
   box-shadow:0 50px #ff4081 inset;
   color: #fff;
 }
-  .btnhover {
+  .btn:hover {
     box-shadow:0 0 #ff4081 inset;
     color: #ff4081;
   }
