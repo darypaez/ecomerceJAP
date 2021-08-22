@@ -1,37 +1,26 @@
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
-document.addEventListener("DOMContentLoaded", function(e){
 
-});
+
+  // Panda Eye move
+  $(document).on( "mousemove", function( event ) {
+    var dw = $(document).width() / 15;
+    var dh = $(document).height() / 15;
+    var x = event.pageX/ dw;
+    var y = event.pageY/ dh;
+    $('.eye-ball').css({
+      width : x,
+      height : y
+    });
+  });
   
-
-    /*Funcion de Capturar, Almacenar datos y Limpiar campos*/
-$(document).ready(function(){
-    $('#boton-guardar').click(function(){
-    /*Captura de datos escrito en los inputs*/
-    var nom = document.getElementById("nombretxt").value;
-    var apel = document.getElementById("apellidotxt").value;
-    /*Guardando los datos en el LocalStorage*/
-    sessionStorage.setItem("Nombre", nom);
-    sessionStorage.setItem("Apellido", apel);
-    /*Limpiando los campos o inputs*/
-    document.getElementById("nombretxt").value = "";
-    document.getElementById("apellidotxt").value = "";
-    });
-});
-
-
-/*Funcion Cargar y Mostrar datos*/
-$(document).ready(function(){
-    $('#boton-cargar').click(function(){
-    /*Obtener datos almacenados*/
-    var nombre = sessionStorage.getItem("Nombre");
-    var apellido = sessionStorage.getItem("Apellido");
-    /*Mostrar datos almacenados*/
-    document.getElementById("nombre").innerHTML = nombre;
-    document.getElementById("apellido").innerHTML =
-   apellido;
-    });
-   });
-   
+  // validation
+  
+  
+  $('.btn').click(function(){
+    $('form').addClass('wrong-entry');
+      setTimeout(function(){ 
+         $('form').removeClass('wrong-entry');
+       },3000 );
+  });
