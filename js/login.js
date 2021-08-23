@@ -3,7 +3,7 @@
 //elementos HTML presentes.
 
 
-  // Panda Eye move
+  // Funcion para que el panda mueva los ojos al mover el cursor
   $(document).on( "mousemove", function( event ) {
     var dw = $(document).width() / 15;
     var dh = $(document).height() / 15;
@@ -15,12 +15,13 @@
     });
   });
   
-  // validation
+  // validacion
   
-  
+  /*
   $('.btn').click(function(){
     $('form').addClass('wrong-entry');
       setTimeout(function(){ 
          $('form').removeClass('wrong-entry');
        },3000 );
   });
+*/
