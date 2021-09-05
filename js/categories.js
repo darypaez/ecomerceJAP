@@ -131,6 +131,6 @@ document.addEventListener("DOMContentLoaded", function(e){
             maxCount = undefined;
         }
 
-        showCategoriesList();
+        mostrarListaProductos();
     });
 });
