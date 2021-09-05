@@ -113,13 +113,12 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 
     document.getElementById("rangeFilterPrice").addEventListener("click", function(){
-        //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
-        //de productos por categoría.
+        //Obtengo el mínimo y máximo de los intervalos para filtrar por precio de productos
         minPrice = document.getElementById("rangeFilterPriceMin").value;
         maxPrice = document.getElementById("rangeFilterPriceMax").value;
 
         if ((minPrice != undefined) && (minPrice != "") && (parseInt(minPrice)) >= 0){
-            minPrice = parseInt(minPrice);
+            minPrice = parseInt(minPrice); //
         }
         else{
             minPrice = undefined;
