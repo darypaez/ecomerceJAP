@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         sortAndShowProducts(ORDER_DESC_BY_PRICE);
     });
 
-    document.getElementById("sortByPrice").addEventListener("click", function(){
+    document.getElementById("sortByRelevancia").addEventListener("click", function(){
         sortAndShowProducts(ORDER_BY_SOLD_COUNT);
     });
 
