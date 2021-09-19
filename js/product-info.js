@@ -104,18 +104,52 @@ function mostrarListaComentarios(lista){
         + today.getMinutes() + today.getSeconds();
         
         var comentario=document.getElementById("comentario").value;
+        var cali= localStorage.getItem("starValor");
+        let stars = '<div class="puntuacion" style="flex-direction: row;">';
+            for (let index = 1; index <= 5; index++) {
+                if (index <= cali){
+                    stars += '<div><i class="fas fa-star" style= "color: #ffa400 !important"></i></div>';
+                }
+                else{
+                    stars += '<div><i class="fas fa-star"></i></div>';
+                }
+            }
+            stars += '</div>';
         var htmlContentToAppend =`
         <div>
-                        <div class="d-flex w-100">
-                            <h4 class="mb-1">`+ localStorage.getItem("user") +`</h4>
+        ` +stars+`
+            <div>
+                   <div class="d-flex w-100">
+                        <h4 class="mb-1">`+ localStorage.getItem("user") +`</h4>
                             <p style = "margin-left: 15px; margin-top:6px">` + today +` </p>
-                        </div>
+                    </div>
                         <p class="mb-1">` + comentario + `</p>
                     </div>`
+        
+        
         document.getElementById("comentariosjson").innerHTML += htmlContentToAppend;
         document.getElementById("comentario").value ="";
+        let arr = document.getElementById("estrellas").querySelectorAll('.fa-star');
+
+        for (let index = 0; index < 5; index++) {
+                arr[index].style.color= "#5f5050";                 
+        }
     
     }
+
+    document.getElementById("estrellas").addEventListener('click', evento =>{
+        let starValor = evento.target.getAttribute('value');
+        localStorage.setItem("starValor", starValor);
+        let arr = document.getElementById("estrellas").querySelectorAll('.fa-star');
+
+        for (let index = 0; index < 5; index++) {
+            if (starValor < arr[index].getAttribute('value')) {
+                arr[index].style.color= "#5f5050";           
+            }else{
+                arr[index].style.color= "#ffa400";           
+            }            
+        }
+    });
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
@@ -149,6 +183,8 @@ document.addEventListener("DOMContentLoaded", function(e){
         if (resultComent.status === "ok")
         {
             calificaciones = resultComent.data;
+            console.log(calificaciones);
+            localStorage.setItem("calificaciones", calificaciones);
             mostrarListaComentarios(calificaciones);
             
             

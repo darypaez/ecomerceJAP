@@ -1,5 +1,5 @@
 #comentarios{
-    margin-left: 10%;
+    margin-left: 9%;
 }
 
 .puntuacion {
@@ -13,27 +13,27 @@
 }
 .puntuacion button:hover {
     cursor: pointer;
-    color: #ffa400;
+    color: #ffa400 !important;
     transform: rotate(360deg);
 }
 button:nth-child(1):hover ~ button {
-    color: #ffa400;
+    color: #ffa400 !important;
     transform: rotate(360deg);
 }
 button:nth-child(2):hover ~ button {
-    color: #ffa400;
+    color: #ffa400 !important;
     transform: rotate(360deg);
 }
 button:nth-child(3):hover ~ button {
-    color: #ffa400;
+    color: #ffa400 !important;
     transform: rotate(360deg);
 }
 button:nth-child(4):hover ~ button {
-    color: #ffa400;
+    color: #ffa400 !important;
     transform: rotate(360deg);
 }
 button:nth-child(5):hover ~ button {
-    color: #ffa400;
+    color: #ffa400 !important;
     transform: rotate(360deg);
 }
 
@@ -55,7 +55,7 @@ button:nth-child(5):hover ~ button {
     border: 1px solid lightslategray;
     border-radius: 20px;
     text-align: center;
-
+    float: right;
     width: 40%;
     
 }

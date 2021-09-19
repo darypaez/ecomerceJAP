@@ -40,6 +40,12 @@
       <hr class="my-3">
           <p id="productCategory"></p>
       <dl>
+        <div id="info">
+          <div class="box-product">
+            <p style="font-size: 12; color: rgb(112, 106, 106);" id="productSoldCount"></p>
+            <h4 id="productName"></h4>
+            <h2 id="productCost"></h2>
+          </div>
         <div id="demo" style= "width: 60%" class="carousel slide" data-ride="carousel">
 
           <!-- Indicators -->
@@ -59,14 +65,6 @@
             <span class="carousel-control-next-icon"></span>
           </a>
         </div>
-      
-        
-        <div class="box-product">
-          <p style="font-size: 12; color: rgb(112, 106, 106);" id="productSoldCount"></p>
-          <h4 id="productName"></h4>
-          <h2 id="productCost"></h2>
-        
-      </div>
       <br>
       <h3>Descripción</h3>
         
@@ -74,7 +72,6 @@
        
       </dl>
       
-      <a type="button" class="btn btn-light btn-lg btn-block" href="products.html">Ver productos</a>
     </div>
     <br>
 
@@ -90,31 +87,31 @@
     <!--COMENTAR SOBRE EL PRODUCTO-->
 <div id="comentarioNuevo">
       
-      <div class="puntuacion giro">
+      <div class="puntuacion giro" id="estrellas" style="margin-left: 9%;">
 
-        <!-- Estrella 1 -->
+        <!-- Estrella 5 -->
         <button class="giro">
-            <i class="fas fa-star"></i>
-        </button>
-
-        <!-- Estrella 2 -->
-        <button class="giro">
-            <i class="fas fa-star"></i>
-        </button>
-
-        <!-- Estrella 3 -->
-        <button class="giro">
-            <i class="fas fa-star"></i>
+            <i class="fas fa-star" value="5"></i>
         </button>
 
         <!-- Estrella 4 -->
         <button class="giro">
-            <i class="fas fa-star"></i>
+            <i class="fas fa-star" value="4"></i>
         </button>
 
-        <!-- Estrella 5 -->
+        <!-- Estrella 3 -->
         <button class="giro">
-            <i class="fas fa-star"></i>
+            <i class="fas fa-star" value="3"></i>
+        </button>
+
+        <!-- Estrella 2 -->
+        <button class="giro">
+            <i class="fas fa-star" value="2"></i>
+        </button>
+
+        <!-- Estrella 1 -->
+        <button class="giro">
+            <i class="fas fa-star" value="1"></i>
         </button>
     
     </div>
@@ -125,6 +122,7 @@
     <button class="btn btn-primary" type="button" id="submit" onclick="insertarComentario()">Enviar</button>
 
   </div>
+  <a type="button" class="btn btn-light btn-lg btn-block" href="products.html">Ver productos</a>
   </main>
   <footer class="text-muted">
     <div class="container">
