@@ -53,7 +53,7 @@ for(let i = 0; i < array.length; i++){
 
 function mostrarListaComentarios(lista){
     let htmlContentToAppend2 = "";
-    localStorage.clear("starValor");
+    localStorage.removeItem("starValor");
     for (let coment of lista) {
             let score  = document.getElementById("estrellitas");
             let desc = document.getElementById("descComentario");
@@ -137,7 +137,7 @@ function mostrarListaComentarios(lista){
                     arr[index].style.color= "#5f5050";                 
             }
             document.getElementById("valistar").style.display="none";
-            localStorage.clear("starValor");
+            localStorage.removeItem("starValor");
         }else{
             document.getElementById("valistar").style.display="block";
         }
