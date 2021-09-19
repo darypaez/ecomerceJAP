@@ -53,7 +53,7 @@ for(let i = 0; i < array.length; i++){
 
 function mostrarListaComentarios(lista){
     let htmlContentToAppend2 = "";
-
+    localStorage.clear("starValor");
     for (let coment of lista) {
             let score  = document.getElementById("estrellitas");
             let desc = document.getElementById("descComentario");
@@ -96,56 +96,68 @@ function mostrarListaComentarios(lista){
     }
 
     function insertarComentario(){
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = today.getFullYear();
-        today = dd + '-' + mm + '-' + yyyy + ' ' + today.getHours() + ":"  
-        + today.getMinutes() + today.getSeconds();
-        
-        var comentario=document.getElementById("comentario").value;
         var cali= localStorage.getItem("starValor");
-        let stars = '<div class="puntuacion" style="flex-direction: row;">';
-            for (let index = 1; index <= 5; index++) {
-                if (index <= cali){
-                    stars += '<div><i class="fas fa-star" style= "color: #ffa400 !important"></i></div>';
+        if (cali){
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+            today = dd + '-' + mm + '-' + yyyy + ' ' + today.getHours() + ":"  
+            + today.getMinutes() + today.getSeconds();
+            
+            var comentario=document.getElementById("comentario").value;
+            
+            let stars = '<div class="puntuacion" style="flex-direction: row;">';
+                for (let index = 1; index <= 5; index++) {
+                    if (index <= cali){
+                        stars += '<div><i class="fas fa-star" style= "color: #ffa400 !important"></i></div>';
+                    }
+                    else{
+                        stars += '<div><i class="fas fa-star"></i></div>';
+                    }
                 }
-                else{
-                    stars += '<div><i class="fas fa-star"></i></div>';
-                }
-            }
-            stars += '</div>';
-        var htmlContentToAppend =`
-        <div>
-        ` +stars+`
+                stars += '</div>';
+            var htmlContentToAppend =`
             <div>
-                   <div class="d-flex w-100">
-                        <h4 class="mb-1">`+ localStorage.getItem("user") +`</h4>
-                            <p style = "margin-left: 15px; margin-top:6px">` + today +` </p>
-                    </div>
-                        <p class="mb-1">` + comentario + `</p>
-                    </div>`
-        
-        
-        document.getElementById("comentariosjson").innerHTML += htmlContentToAppend;
-        document.getElementById("comentario").value ="";
-        let arr = document.getElementById("estrellas").querySelectorAll('.fa-star');
+            ` +stars+`
+                <div>
+                    <div class="d-flex w-100">
+                            <h4 class="mb-1">`+ localStorage.getItem("user") +`</h4>
+                                <p style = "margin-left: 15px; margin-top:6px">` + today +` </p>
+                        </div>
+                            <p class="mb-1">` + comentario + `</p>
+                        </div>`
+            
+            
+            document.getElementById("comentariosjson").innerHTML += htmlContentToAppend;
+            document.getElementById("comentario").value ="";
+            let arr = document.getElementById("estrellas").querySelectorAll('.fa-star');
 
-        for (let index = 0; index < 5; index++) {
-                arr[index].style.color= "#5f5050";                 
+            for (let index = 0; index < 5; index++) {
+                    arr[index].style.color= "#5f5050";                 
+            }
+            document.getElementById("valistar").style.display="none";
+            localStorage.clear("starValor");
+        }else{
+            document.getElementById("valistar").style.display="block";
         }
-    
     }
 
+    //Obtengo el div estrellas y tomo como evento el click en las estrellas para pintar de amarillo 
+    //desde la seleccionada para atras. Usando value de cada etrella. 
     document.getElementById("estrellas").addEventListener('click', evento =>{
         let starValor = evento.target.getAttribute('value');
+        //guardo en local storage el valor de la estrella seleccionada
         localStorage.setItem("starValor", starValor);
+        //dentro del div que tiene id estrellas obtengo todos los de clase fa star
         let arr = document.getElementById("estrellas").querySelectorAll('.fa-star');
 
         for (let index = 0; index < 5; index++) {
             if (starValor < arr[index].getAttribute('value')) {
+                //pinto de gris la estrella de la posicion index
                 arr[index].style.color= "#5f5050";           
             }else{
+                //pinto de amarillo la estrella de la posicion index
                 arr[index].style.color= "#ffa400";           
             }            
         }
@@ -179,12 +191,10 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultComent){
-        //Obtengo los datos del json de product info
+        //Obtengo los datos del json de product info y los muestro
         if (resultComent.status === "ok")
         {
             calificaciones = resultComent.data;
-            console.log(calificaciones);
-            localStorage.setItem("calificaciones", calificaciones);
             mostrarListaComentarios(calificaciones);
             
             
