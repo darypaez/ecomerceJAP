@@ -44,11 +44,12 @@ var getJSONData = function(url){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+//obtengo el usuario de local storage
   us =localStorage.getItem("user");
   contentsesion ="";
+  //si hay sesion iniciada despliga menu
   if (us) {
-    //console.log(us);
-    console.log("if");
+
     contentsesion= `<div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user mr-1"></i>
     `+ us +`
@@ -60,8 +61,8 @@ document.addEventListener("DOMContentLoaded", function(e){
     </div>`
     
   }
+  //si no hay sesion iniciada link redireccionando a iniciar sesion (index.html)
   else{
-    console.log("else");
     contentsesion= `<a class="py-2 d-none d-md-inline-block" href="index.html">Iniciar Sesión</a>`
   }
   document.getElementById("sesion").innerHTML += contentsesion;

@@ -155,9 +155,11 @@ function mostrarListaComentarios(lista){
         }
     });
 
+    //funcion para mostrar los productos relacionados obtenidos del arreglo de product info
 function mostrarProductosRelacionados(similares,listadoProductos){
     var productSimilares =document.getElementById("productSimilar");
     let htmlContentToAppend="";
+    //recorre todos los items del arreglo relatedproducts 
     for (let i=0; i<similares.length;i++) {
         relacionado = listadoProductos[similares[i]];
         
@@ -168,7 +170,7 @@ function mostrarProductosRelacionados(similares,listadoProductos){
                 
             <h2>` + relacionado.currency + + relacionado.cost +`</h2>
         
-    </div></button>`
+    </div>`
     }
     productSimilares.innerHTML = htmlContentToAppend;
     
