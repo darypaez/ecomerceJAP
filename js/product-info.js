@@ -43,14 +43,6 @@ for(let i = 0; i < array.length; i++){
 }
 
 
-//document.getElementById('calificacion').addEventListener('click', evento =>{
-  //  let res= evento.target;
-    //let puntuacion = -1;
-    //if (res.getAttribute('value') != )
-
-//})
-
-
 function mostrarListaComentarios(lista){
     let htmlContentToAppend2 = "";
     localStorage.removeItem("starValor");
@@ -163,10 +155,39 @@ function mostrarListaComentarios(lista){
         }
     });
 
+function mostrarProductosRelacionados(similares,listadoProductos){
+    var productSimilares =document.getElementById("productSimilar");
+    let htmlContentToAppend="";
+    for (let i=0; i<similares.length;i++) {
+        relacionado = listadoProductos[similares[i]];
+        
+        htmlContentToAppend +=`<div class= "box-relacionados">
+            <img src="` + relacionado.imgSrc + `" alt="` + relacionado.name + `" class="img-thumbnail" style="margin-top:5px">
+            
+                <h4>`+ relacionado.name +`</h4>
+                
+            <h2>` + relacionado.currency + + relacionado.cost +`</h2>
+        
+    </div></button>`
+    }
+    productSimilares.innerHTML = htmlContentToAppend;
+    
+   
+}
+
+
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+    //Obtengo todos los productos de products 
+    getJSONData(PRODUCTS_URL).then(function(resProduct){
+        if (resProduct.status === "ok")
+        {
+            listadoProductos = resProduct.data;
+        }
+    })
     //Obtengo los datos del json product info y los agrego a la pag html
     getJSONData(PRODUCT_INFO_URL).then(function(resultObj){
         if (resultObj.status === "ok")
@@ -178,15 +199,16 @@ document.addEventListener("DOMContentLoaded", function(e){
             let productCostHTML = document.getElementById("productCost");
             let productCategoryHTML = document.getElementById("productCategory");
             let productSoldCountHTML = document.getElementById("productSoldCount");
-        
             productNameHTML.innerHTML = product.name;
             productDescriptionHTML.innerHTML = product.description;
             productCostHTML.innerHTML = product.currency + " " + product.cost;
             productCategoryHTML.innerHTML = "Categoria: " + product.category;
             productSoldCountHTML.innerHTML = product.soldCount + " Vendidos";
 
-            //Muestro las imagenes en forma de galería
+            //Llamo a la funcion que muestra las imagenes en forma de galería
             showImagesCarrusel(product.images);
+            //Llamo funcion que muestra productos relacionados
+            mostrarProductosRelacionados(product.relatedProducts, listadoProductos);
         }
     });
 
@@ -201,4 +223,6 @@ document.addEventListener("DOMContentLoaded", function(e){
 
         }
     });
+
+
 });

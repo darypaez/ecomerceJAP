@@ -59,3 +59,11 @@ button:nth-child(5):hover ~ button {
     width: 40%;
     
 }
+
+.box-relacionados{
+    border: 1px solid lightslategray;
+    border-radius: 15px;
+    text-align: center;
+    width: 25%;
+    margin-left: 15%;
+}

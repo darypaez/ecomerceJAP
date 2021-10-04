@@ -1,4 +1,5 @@
-
+//Se borra la info del usuario logueado al cargarse index.html
+localStorage.removeItem("user");
 
   // Funcion para que el panda mueva los ojos al mover el cursor
   $(document).on( "mousemove", function( event ) {
