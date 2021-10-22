@@ -14,22 +14,7 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
 
 
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
 
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/dropzone.css" rel="stylesheet">
@@ -45,14 +30,82 @@
       <div id="sesion"></div>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 6 (Fecha de entrega: 31/10/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  
+  <div class="container">
+    <div class="row">
+    <form method="post" id="perfil">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 toppad" >
+ 
+ 
+        <div class="panel panel-success"><br>
+            <h2 class="panel-title"><center><font size="5"><i class='glyphicon glyphicon-user'></i>MI PERFIL</font></center></h2>
+
+          <div class="panel-body">
+            <div class="row">
+      
+              <div class="col-md-3 col-lg-3 " align="center"> 
+      <div id="load_img">
+        <img class="img-responsive" src="img/not-profile.jpg" alt="Foto de Perfil">
+        
+      </div>
+      <br>				
+        <div class="row">
+            <div class="col-md-12">
+            <div class="form-group">
+              <input class='filestyle' data-buttonText="Logo" type="file" name="imagefile" id="imagefile" onchange="upload_image();">
+            </div>
+          </div>
+          
+        </div>
+      </div>
+              <div class=" col-md-9 col-lg-9 "> 
+                <table class="table table-condensed">
+                  <tbody>
+                    <tr>
+                      <td class='col-md-3'>Nombre:</td>
+                      <td><input type="text" class="form-control input-sm" name="nombre" value=""></td>
+                    </tr>
+                    <tr>
+                      <td>Apellido:</td>
+                      <td><input type="text" class="form-control input-sm" name="apellido" value=""></td>
+                    </tr>
+                    <tr>
+                      <td>Edad:</td>
+                      <td><input type="email" class="form-control input-sm" name="edad" value="" ></td>
+                    </tr>
+          <tr>
+                      <td>Correo electrónico:</td>
+                      <td><input type="text" class="form-control input-sm" name="correo" value=""></td>
+                    </tr>
+
+                    <tr>
+                      <td>Telefono de contacto:</td>
+                      <td><input type="text" class="form-control input-sm" name="tel" value=""></td>
+                    </tr>
+                  </tbody>
+                </table>
+                
+                
+              </div>
+      <div class='col-md-12' id="resultados_ajax"></div><!-- Carga los datos ajax -->
+            </div>
+          </div>
+               <div class="panel-footer text-center">
+                  
+                   
+              <button type="submit" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-refresh"></i> Guardar cambios</button>
+
+                     
+                     
+                  </div>
+          
+        </div>
+      </div>
+  </form>
     </div>
-  </div>
+
+
+
   <footer class="text-muted bg-light">
     <div class="container">
       <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
@@ -78,6 +131,7 @@
   <script src="js/dropzone.js"></script>
   <script src="js/init.js"></script>
   <script src="js/my-profile.js"></script>
+  <script type="text/javascript" src="js/bootstrap-filestyle.js"> </script>
 </body>
 
 </html>
