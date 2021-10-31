@@ -45,14 +45,14 @@
       
               <div class="col-md-3 col-lg-3 " align="center"> 
       <div id="load_img">
-        <img class="img-responsive" src="img/not-profile.jpg" alt="Foto de Perfil">
+        <img class="img-responsive" src="img/not-profile.jpg" id="foto-perfil" alt="Foto de Perfil" style="max-width: 150px;max-height: 500px;">
         
       </div>
       <br>				
         <div class="row">
             <div class="col-md-12">
             <div class="form-group">
-              <input class='filestyle' data-buttonText="Logo" type="file" name="imagefile" id="imagefile" onchange="upload_image();">
+              <input class='filestyle' data-buttonText="Logo" type="file" name="image0file" id="imagefile" onchange="cargarImagen()" >
             </div>
           </div>
           
@@ -62,38 +62,44 @@
                 <table class="table table-condensed">
                   <tbody>
                     <tr>
-                      <td class='col-md-3'>Nombre:</td>
-                      <td><input type="text" class="form-control input-sm" name="nombre" value=""></td>
+                      <td class='col-md-3' style="color: #FF009E;"><strong>Primer Nombre:</strong></td>
+                      <td><input type="text" class="form-control input-sm" name="nombre" id="primerNombre" value=""></td>
                     </tr>
                     <tr>
-                      <td>Apellido:</td>
-                      <td><input type="text" class="form-control input-sm" name="apellido" value=""></td>
+                      <td class='col-md-3' style="color: #FF009E;"> <strong>Segundo Nombre:</strong></td>
+                      <td><input type="text" class="form-control input-sm" name="nombre" id="segundoNombre" value=""></td>
                     </tr>
                     <tr>
-                      <td>Edad:</td>
-                      <td><input type="email" class="form-control input-sm" name="edad" value="" ></td>
+                      <td style="color: #FF009E;"><strong>Primer Apellido:</strong></td>
+                      <td><input type="text" class="form-control input-sm" name="apellido" id="primerApellido" value=""></td>
+                    </tr>
+                    <tr>
+                      <td style="color: #FF009E;"><strong>Segundo Apellido:</strong></td>
+                      <td><input type="text" class="form-control input-sm" name="apellido" id="segundoApellido" value=""></td>
+                    </tr>
+                    <tr>
+                      <td style="color: #FF009E;"><strong>Correo Electrónico:</strong></td>
+                      <td><input type="email" class="form-control input-sm" name="correo" id="correo" value="" ></td>
                     </tr>
           <tr>
-                      <td>Correo electrónico:</td>
-                      <td><input type="text" class="form-control input-sm" name="correo" value=""></td>
+                      <td style="color: #FF009E;"><strong>Edad:</strong></td>
+                      <td><input type="text" class="form-control input-sm" name="edad" id="edad" value=""></td>
                     </tr>
 
                     <tr>
-                      <td>Telefono de contacto:</td>
-                      <td><input type="text" class="form-control input-sm" name="tel" value=""></td>
+                      <td style="color: #FF009E;"><strong>Telefono de Contacto:</strong></td>
+                      <td><input type="text" class="form-control input-sm" name="tel" id="numContacto" value=""></td>
                     </tr>
                   </tbody>
                 </table>
                 
                 
               </div>
-      <div class='col-md-12' id="resultados_ajax"></div><!-- Carga los datos ajax -->
-            </div>
           </div>
                <div class="panel-footer text-center">
                   
                    
-              <button type="submit" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-refresh"></i> Guardar cambios</button>
+              <button type="submit" class="btn btn-sm btn-success" onclick="guardarCambios()"><i class="glyphicon glyphicon-refresh"></i> Guardar cambios</button>
 
                      
                      
@@ -112,12 +118,7 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
-  <div class="alert fade alert-success" role="alert" id="alertResult">
-    <span id="resultSpan"></span>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
+ 
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
