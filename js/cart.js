@@ -1,6 +1,6 @@
 let productosCarrito=[];
 let porcentEnvio= 0;
-let moneda = "UYU";
+let moneda = "UYU"; //inicialmente la pag se recarga en pesos
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
@@ -13,32 +13,41 @@ document.addEventListener("DOMContentLoaded", function(e){
             showCarrito();
         }
     })
-
+    //evento de click en el simbolo de pesos, pasa el subtotal y total a pesos
     document.getElementById("pesos").addEventListener("click", function(){
         moneda = "UYU";
         updateProductoSubtotal();
     });
     
+    //evento de click en el simbolo de dolares, pasa el subtotal y total a dolares
     document.getElementById("dolares").addEventListener("click", function(){
         moneda = "USD";
         updateProductoSubtotal();
     });
 
+        //evento change al seleccionar envio premium; calcula costo de envio y se ve reflejado en el costo
+        //de envio y lo suma al total
     document.getElementById("premium").addEventListener("change", function(){
         porcentEnvio = 0.15;
         updateProductoSubtotal();
     });
     
+     //evento change al seleccionar envio express, calcula costo de envio y se ve reflejado en el costo
+        //de envio y lo suma al total
     document.getElementById("express").addEventListener("change", function(){
         porcentEnvio = 0.07;
         updateProductoSubtotal();
     });
 
+     //evento change al seleccionar envio standard; calcula costo de envio y se ve reflejado en el costo
+        //de envio y lo suma al total
     document.getElementById("standard").addEventListener("change", function(){
         porcentEnvio = 0.05;
         updateProductoSubtotal();
     });
 
+    //evento change, cuando selecciono transferencia me habilita los campos de la misma si estaban desahibilitados
+    //y deshabilita los de tarj de credito
     document.getElementById("transf").addEventListener("change", function(){
         document.getElementById("num-tarjeta").disabled= true;
         document.getElementById("cvv-tarjeta").disabled = true;
@@ -48,6 +57,8 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
     });
 
+    //evento change, cuando selecciono tarjeta de credito me habilita los campos de la misma si estaban desahibilitados
+    //y deshabilita los de transferencia
     document.getElementById("credit-card").addEventListener("change", function(){
         if (document.getElementById("num-tarjeta").disabled){
             document.getElementById("num-tarjeta").disabled= false;
@@ -125,8 +136,7 @@ function updateProductoSubtotal(){
 }
 
 
-
-/*modificar la función showCarrito para que aparezca el subtotal del producto en base a la cantidad y precio unitario*/
+//muestra los articulos del json calculando sub total y total
 function showCarrito(){
 
     /*mostrar los productos del carrito con el input correspondiente a la cantidad*/
@@ -167,6 +177,7 @@ function showCarrito(){
  
 }
 
+//funcion para chequear que estén los campos de envio llenados antes de proceder al pago
 function validarEnvio(){
     
     let inputEmpty;
@@ -175,7 +186,6 @@ function validarEnvio(){
       var forms = document.getElementsByClassName('needs-validation');
       // Loop over them and prevent submission
       var validation = Array.prototype.filter.call(forms, function(form) {
-        console.log("ENTRA");
           form.classList.add('was-validated');
          
         },
@@ -193,12 +203,12 @@ let inputCalle = document.getElementById("calle-envio").value != "";
 let inputNum = document.getElementById("num-envio").value != "";
 let inputEsq = document.getElementById("esq-envio").value != "";
 inputEmpty = inputCalle && inputNum && inputEsq;
-console.log(inputEmpty)
-if(!chequeado)   { //payment method button is not checked
+//si no selecciono envio sale alert
+if(!chequeado)   { 
     alert("Seleccione un tipo de envío"); 
 }    
 
-
+    //si seleccioné envio y llene los campos de la la direccion se abre el modal del pago
     if (chequeado && inputEmpty ){
       $('#exampleModalCenter').modal('show');
     }
@@ -218,20 +228,26 @@ if (!envioExpress.checked || !envioPremium.checked || !envioStandard.checked){
 
 
 }
-
+//finalizar compra, muestra que se realizo con exito y cierra modal
 function FinalizarCompra(){
   $('#exampleModalCenter').modal('hide');
   alert("Compra realizada con exito");
 }
+
+//cerrar modal
 function Cerrar(){
   $('#exampleModalCenter').modal('hide');
 }
+
+//funcion para eliminar un producto del carrito , lo saco del arreglo , calculo el subtotal de nuevo y muestro
 function eliminarProducto(borrar){
     productosCarrito.splice(borrar,1);
     updateProductoSubtotal();
     showCarrito();
 }
 
+
+//funcion que valida que los campos del metodo de pago seleccionado tengan valor
 function validarPago(){
   
   let transfBanc = document.getElementById("transf");
@@ -241,8 +257,6 @@ function validarPago(){
       let cvvtarj = document.getElementById("cvv-tarjeta").value !== "";
       let venctarj = document.getElementById("vencimiento-tarjeta").value !== "";
       let tarj = document.getElementById("vencimiento-tarjeta");
-      console.log(tarj.value);
-      console.log("venc tarj",document.getElementById("vencimiento-tarjeta"));
       if (numtarj && cvvtarj && venctarj){
         FinalizarCompra();
       }
@@ -269,21 +283,3 @@ function validarPago(){
 
 
 }
-/*
-(function() {
-    'use strict';
-    window.addEventListener('load', function() {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation');
-      // Loop over them and prevent submission
-      var validation = Array.prototype.filter.call(forms, function(form) {
-        form.addEventListener('submit', function(event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-          form.classList.add('was-validated');
-        }, false);
-      });
-    }, false);
-  })();*/
